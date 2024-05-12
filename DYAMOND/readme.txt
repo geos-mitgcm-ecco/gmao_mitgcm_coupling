@@ -1,4 +1,6 @@
-This directory contains some deprecated folders that pertain to code used to run the DYAMOND c1440_llc2160 simulation as well as experimental code to split the MITgcm and sea ice code in two executables.
+This directory contains some deprecated folders that pertain to code used to
+run the DYAMOND c1440_llc2160 simulation as well as experimental code to split
+the MITgcm and sea ice code in two executables.
 
 commit dd8a34d029441aad80c72e57f05876356cbf5a62
 Author: Dimitris Menemenlis <dmenemen@kirke.local>
@@ -14,7 +16,11 @@ moving the old gmao_mitgcm_coupling/notes subdirectory to gmao_mitgcm_coupling/D
 
 >>>>>>>>>>>>>>>>>>>>>>>
 
-What follows are some notes from Hong Zhang pertaining to commits that were removed when moving from https://github.com/christophernhill/gmao_mitgcm_couplng to https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling
+What follows are some notes from Hong Zhang pertaining to some
+pre-2022 commits by Chris hill that were removed when moving
+from https://github.com/christophernhill/gmao_mitgcm_couplng
+to https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling
+in order to enable automatic merging of the two repositories.
 
 From: "Zhang, Hong (US 398K)" <hong.zhang@jpl.nasa.gov>
 Subject: Re: can you help with GEOS-ECCO github
