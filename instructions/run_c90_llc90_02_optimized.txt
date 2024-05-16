@@ -1,0 +1,132 @@
+git clone git@github.com:GEOS-ESM/GEOSgcm.git
+cd GEOSgcm
+
+set ESMADIR = $cwd
+
+git checkout tags/v11.1.1
+
+# NAS load modules
+
+module use -a /nobackup/gmao_SIteam/modulefiles
+module load GEOSenv
+mepo clone
+source @env/g5_modules
+cd src/Components/@GEOSgcm_GridComp
+git checkout eature/donifan/KrokMG3
+
+/nobackupp11/afahad/GEOSv11/cd GEOSagcm_GridComp/GEOSphysics_GridComp/GEOSmoist_GridComp/
+sed -i 's|set_source_files_properties(GEOS_MGB2_2M_InterfaceMod.F90 PROPERTIES COMPILE_OPTIONS ${FOPT1})|set_source_files_properties(GEOS_MGB2_2M_InterfaceMod.F90 PROPERTIES COMPILE_OPTIONS ${FOPT0})|g' CMakeLists.txt
+
+cd $ESMADIR
+
+cd src/Shared/@GMAO_Shared/GEOS_Shared
+
+sed -i '371s|* PRFAC / DIFSQT|* PRFAC * 1.009 / DIFSQT|g' surfacelayer.F90
+
+sed -i '1586s|.2030325E-5|.204E-5|g' surfacelayer.F90
+
+sed -i '1592s|0.215E-02|0.2143E-02|g' surfacelayer.F90
+
+cd $ESMADIR
+
+source @env/g5_modules
+
+mkdir build
+cd build
+
+cmake .. -DBASEDIR=$BASEDIR/Linux -DCMAKE_INSTALL_PREFIX=../install -DBUILD_MIT_OCEAN=ON -DMIT_CONFIG_ID=c90_llc90_02 -DCMAKE_Fortran_COMPILER=ifort
+
+
+make -j 12 install
+
+cd ../install/bin/
+
+sed -i 's|setenv MASDIR /u/$LOGNAME/GEOS5.0/$expid|#setenv MASDIR /u/$LOGNAME/GEOS5.0/$expid|g' ../post/gcmpost.script
+
+sed -i '596i \ \ \ \ \ \ \ set DEFAULT_HISTORY_TEMPLATE="HISTORY.AOGCM.rc.tmpl"' gcm_setup
+
+
+
+### Setup
+
+
+# creating exp from install/bin/ directory
+
+./gcm_setup
+
+# example inputs
+
+Enter the Experiment ID:
+GEOSMIT_29test
+Enter a 1-line Experiment Description:
+test exp
+Do you wish to CLONE an old experiment? (Default: NO or FALSE)
+NO
+Enter the Atmospheric Horizontal Resolution code: 
+c90
+Enter the Atmospheric Model Vertical Resolution: LM (Default: 72)
+72
+Enter Choice for Atmospheric Model Microphysics: (Default: BACM_1M)
+MGB2_2M 
+
+Use Hydrostatic Atmosphere? (Default: TRUE)
+TRUE
+Do you wish to IOSERVER? (Default: NO or FALSE)
+NO
+Enter the Processor Type you wish to run on:
+sky
+Do you wish to run the COUPLED Ocean/Sea-Ice Model? (Default: NO or FALSE)
+YES
+
+Choose an Ocean Model: (Default: MOM5)
+MIT
+
+Choose a Seaice Model: (Default: CICE4)
+CICE4
+
+
+Enter the Ocean Horizontal Resolution: 
+llc90 
+
+Enter the Ocean Model Vertical Resolution: LM (Default: 50)
+50
+
+Enter the choice of  Land Surface Boundary Conditions using: 1 (Icarus), 2 (Default: Icarus-NLv3)
+2
+
+Enter the choice of  Land Surface Model using: 1 (Default: Catchment), 2 (CatchmentCN-CLM4.0 (CN_CLM40)), 3 (CatchmentCN-CLM4.5 (CN_CLM45))
+1
+
+Do you wish to run GOCART with Actual or Climatological Aerosols? (Enter: A (Default) or C)
+A
+
+Enter the GOCART Emission Files to use: AMIP (Default) or OPS:
+AMIP
+
+Enter HEARTBEAT_DT to use
+450
+
+Enter the filename of the HISTORY template to use
+-----------------------------------------------------------
+As MIT was chosen, the default HISTORY Template is HISTORY.AOGCM.rc.tmpl
+  1. Hit ENTER to use the default HISTORY template (HISTORY.AOGCM.rc.tmpl)
+Using HISTORY.AOGCM.rc.tmpl
+ 
+You must now copy your Initial Conditions into: 
+----------------------------------------------- 
+/nobackupp11/afahad/exp/test
+
+
+
+## submitting exp
+
+#cd to exp dir
+
+/nobackupp11/afahad/exp/test
+cp /nobackupp11/afahad/gfexp/geosmitenv_v11.1.1.sh 
+./geosmitenv_v11.1.1.sh
+
+
+#submit job
+
+qsub gcm_run.j
