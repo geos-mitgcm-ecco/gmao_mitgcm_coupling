@@ -12,7 +12,7 @@ module load GEOSenv
 mepo clone
 source @env/g5_modules
 cd src/Components/@GEOSgcm_GridComp
-git checkout eature/donifan/KrokMG3
+git checkout feature/donifan/KrokMG3
 
 cd GEOSagcm_GridComp/GEOSphysics_GridComp/GEOSmoist_GridComp/
 sed -i 's|set_source_files_properties(GEOS_MGB2_2M_InterfaceMod.F90 PROPERTIES COMPILE_OPTIONS ${FOPT1})|set_source_files_properties(GEOS_MGB2_2M_InterfaceMod.F90 PROPERTIES COMPILE_OPTIONS ${FOPT0})|g' CMakeLists.txt
