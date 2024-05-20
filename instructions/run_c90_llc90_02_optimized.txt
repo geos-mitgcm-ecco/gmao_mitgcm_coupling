@@ -57,7 +57,7 @@ sed -i '596i \ \ \ \ \ \ \ set DEFAULT_HISTORY_TEMPLATE="HISTORY.AOGCM.rc.tmpl"'
 # example inputs
 
 Enter the Experiment ID:
-GEOSMIT_29test
+test
 Enter a 1-line Experiment Description:
 test exp
 Do you wish to CLONE an old experiment? (Default: NO or FALSE)
