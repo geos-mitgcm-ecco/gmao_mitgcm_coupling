@@ -1,0 +1,8 @@
+for
+https://github.com/geos-mitgcm-ecco/GEOS_OceanGridComp/tree/contrib/MIT_GEOS5PlugMod/configs/c180_llc270_01
+based on Ou Wang's latest ECCO version-5 (llc270 with MultiGrid approach)
+/nobackup/owang/runs/V5/MGit5b/doc/v5_MGit5b_reproduction_howto.doc
+
+All binary files specified in input/data* can be linked from
+pfe:/nobackup/hzhang1/pub/llc270_FWD/input_bin
+
