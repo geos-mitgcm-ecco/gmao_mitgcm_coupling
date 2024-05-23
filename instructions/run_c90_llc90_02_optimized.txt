@@ -123,7 +123,7 @@ You must now copy your Initial Conditions into:
 #cd to exp dir
 
 /nobackupp11/afahad/exp/test
-cp /nobackupp11/afahad/gfexp/geosmitenv_v11.1.1.sh 
+cp /nobackupp11/afahad/gfexp/geosmitenv_v11.1.1.sh ./
 ./geosmitenv_v11.1.1.sh
 
 
