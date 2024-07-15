@@ -128,7 +128,7 @@ sed -i 's/JOB_SGMT:     00000032/JOB_SGMT:     00000005/' CAP.rc
 sed -i 's/NUM_SGMT:     4/NUM_SGMT:     1/'               CAP.rc
 
 cp ${pp}/gmao_mitgcm_couplng/IAU/input/data.iau .
-cp ${pp}/gmao_mitgcm_couplng/IAU/working.sh2 .
+cp ${pp}/gmao_mitgcm_couplng/IAU/working2.sh .
 
 
 #submit job
