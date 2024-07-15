@@ -3,7 +3,7 @@
 git clone https://github.com/GEOS-ESM/GEOSgcm.git
 cd GEOSgcm
 git checkout tags/v11.1.1
-git clone https://github.com/christophernhill/gmao_mitgcm_couplng
+git clone https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling.git
 
 
 # NAS load modules
