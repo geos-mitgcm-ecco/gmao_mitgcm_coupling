@@ -15,7 +15,7 @@ tcsh
 source @env/g5_modules
 
 
-cp gmao_mitgcm_couplng/IAU/code/* src/Components/@GEOSgcm_GridComp/GEOSogcm_GridComp/@GEOS_OceanGridComp/MIT_GEOS5PlugMod/configs/c90_llc90_02/code
+cp gmao_mitgcm_coupling/IAU/code/* src/Components/@GEOSgcm_GridComp/GEOSogcm_GridComp/@GEOS_OceanGridComp/MIT_GEOS5PlugMod/configs/c90_llc90_02/code
 set pp = `pwd`
 
 # build
@@ -114,7 +114,7 @@ cp /nobackupp11/afahad/GEOSMITgcmFiles/restarts_org/* .
 
 #copy mit input dir
 cp -r /nobackupp11/afahad/GEOSMITgcmFiles/mit_input_llc90_02/ mit_input
-cp ${pp}/gmao_mitgcm_couplng/IAU/input/data* mit_input/
+cp ${pp}/gmao_mitgcm_coupling/IAU/input/data* mit_input/
 cp /nobackup/hzhang1/for_Fahad/IAU/mask3D.data mit_input/
 
 
@@ -127,8 +127,8 @@ cp /nobackupp11/afahad/GEOSMITgcmFiles/geosmitenv_v11.1.1.sh .
 sed -i 's/JOB_SGMT:     00000032/JOB_SGMT:     00000005/' CAP.rc
 sed -i 's/NUM_SGMT:     4/NUM_SGMT:     1/'               CAP.rc
 
-cp ${pp}/gmao_mitgcm_couplng/IAU/input/data.iau .
-cp ${pp}/gmao_mitgcm_couplng/IAU/working2.sh .
+cp ${pp}/gmao_mitgcm_coupling/IAU/input/data.iau .
+cp ${pp}/gmao_mitgcm_coupling/IAU/working2.sh .
 
 
 #submit job
