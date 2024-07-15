@@ -132,6 +132,6 @@ cp ${pp}/gmao_mitgcm_couplng/IAU/working.sh2 .
 
 
 #submit job
-qsub working.sh #calling gcm_run.j
+qsub working2.sh #calling gcm_run.j
 
 
