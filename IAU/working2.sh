@@ -9,6 +9,7 @@
 #@BATCH_NAME -o gcm_run.o@RSTDATE
 
 
+# get expid name HISTORY
 EXPID=$(grep "EXPID:" HISTORY.rc | awk -F": " '{print $2}')
 
 rbcs=$EXPID
