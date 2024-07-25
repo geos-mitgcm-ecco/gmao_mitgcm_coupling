@@ -14,20 +14,20 @@ Algorithm for IAU for CICE variables
   HSNOWITD_day5(i,j,n)
 
 2. Offline, the volume of frozen water:
-  HEFF_GEOS_day5=0
-  HSNOW_GEOS_day5=0
+  HEFF_GEOS_day5(i,j)=0
+  HSNOW_GEOS_day5(i,j)=0
   DO n=1,nITD
    DO j=1-OLy,sNy+OLy
     DO i=1-OLx,sNx+OLx
-     HEFF_GEOS_day5(i,j,n)=HEFF_GEOS_day5(i,j,n)+HEFFITD_day5(i,j,n)
-     HSNOW_GEOS_day5(i,j,n)=HSNOW_GEOS_day5(i,j,n)+HSNOWITD_day5(i,j,n)
+     HEFF_GEOS_day5(i,j)=HEFF_GEOS_day5(i,j,n)+HEFFITD_day5(i,j,n)
+     HSNOW_GEOS_day5(i,j)=HSNOW_GEOS_day5(i,j,n)+HSNOWITD_day5(i,j,n)
     ENDDO
    ENDDO
   ENDDO
 
 3. Offline use ceaice ice and snow density to convert from m^3/m^2 to kg/m^2
    of total equivalent water
-   then compute the difference for the ECCO estimate of that value
+   then compute the difference for the ECCO estimate of that value (ie, sea-ice load)
 
   ICESNO_ANALYSIS_INC(i,j) =
   ( HEFF_GEOS_day5 * VOLICE_DENSITY + HSNOW_GEOS_day5 * VOLSNO_DENSITY ) -
