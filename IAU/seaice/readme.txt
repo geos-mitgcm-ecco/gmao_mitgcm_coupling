@@ -19,8 +19,8 @@ Algorithm for IAU for CICE variables
   DO n=1,nITD
    DO j=1-OLy,sNy+OLy
     DO i=1-OLx,sNx+OLx
-     HEFF_GEOS_day5(i,j)=HEFF_GEOS_day5(i,j,n)+HEFFITD_day5(i,j,n)
-     HSNOW_GEOS_day5(i,j)=HSNOW_GEOS_day5(i,j,n)+HSNOWITD_day5(i,j,n)
+     HEFF_GEOS_day5(i,j)=HEFF_GEOS_day5(i,j)+HEFFITD_day5(i,j,n)
+     HSNOW_GEOS_day5(i,j)=HSNOW_GEOS_day5(i,j)+HSNOWITD_day5(i,j,n)
     ENDDO
    ENDDO
   ENDDO
