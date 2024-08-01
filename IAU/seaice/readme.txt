@@ -1,26 +1,22 @@
 Algorithm for IAU for CICE variables
 
-1. Run GEOS/ECCO for 5 days
+1. Run GEOS/ECCO for N (e.g., 5) days
 
-  On day zero we dump:
-  HEFFITD_day0(i,j,n)
-  HSNOWITD_day0(i,j,n)
-  SImeltPd_day0(i,j,n)
-  SIqIce_day0(i,j,l,n)
-  SIqSnow_day0(i,j,l,n)
-
-  On day five we dump
-  HEFFITD_day5(i,j,n)
-  HSNOWITD_day5(i,j,n)
+  On day N we dump:
+  HEFFITD_N(i,j,n)
+  HSNOWITD_N(i,j,n)
+  SImeltPd_N(i,j,n)
+  SIqIce_N(i,j,l,n)
+  SIqSnow_N(i,j,l,n)
 
 2. Offline, the volume of frozen water:
-  HEFF_GEOS_day5(i,j)=0
-  HSNOW_GEOS_day5(i,j)=0
+  HEFF_GEOS_N(i,j)=0
+  HSNOW_GEOS_N(i,j)=0
   DO n=1,nITD
    DO j=1-OLy,sNy+OLy
     DO i=1-OLx,sNx+OLx
-     HEFF_GEOS_day5(i,j)=HEFF_GEOS_day5(i,j)+HEFFITD_day5(i,j,n)
-     HSNOW_GEOS_day5(i,j)=HSNOW_GEOS_day5(i,j)+HSNOWITD_day5(i,j,n)
+     HEFF_GEOS_N(i,j)=HEFF_GEOS_N(i,j)+HEFFITD_N(i,j,n)
+     HSNOW_GEOS_N(i,j)=HSNOW_GEOS_N(i,j)+HSNOWITD_N(i,j,n)
     ENDDO
    ENDDO
   ENDDO
@@ -30,34 +26,34 @@ Algorithm for IAU for CICE variables
    then compute the difference for the ECCO estimate of that value (ie, sea-ice load)
 
   ICESNO_ANALYSIS_INC(i,j) =
-  ( HEFF_GEOS_day5 * VOLICE_DENSITY + HSNOW_GEOS_day5 * VOLSNO_DENSITY ) -
-  ( HEFF_ECCO_day5 * rhoice         + HSNOW_ECCO_day5 * rhosnow)
+  ( HEFF_GEOS_N * VOLICE_DENSITY + HSNOW_GEOS_N * VOLSNO_DENSITY ) - SICEload_N
 
   SCALING_FACTOR(i,j) = ICESNO_ANALYSIS_INC(i,j) /
-                      ( HEFF_GEOS_day0  * VOLICE_DENSITY +
-                        HSNOW_GEOS_day0 * VOLSNO_DENSITY )
+                      ( HEFF_GEOS_N  * VOLICE_DENSITY +
+                        HSNOW_GEOS_N * VOLSNO_DENSITY )
 
-  The increments that we want to apply are:
-  HEFFITD_INC(i,j,n)  = SCALING_FACTOR(i,j) * HEFFITD_day0(i,j,n)  * deltat / 5days
-  HSNOWITD_INC(i,j,n) = SCALING_FACTOR(i,j) * HSNOWITD_day0(i,j,n) * deltat / 5days
-  SImeltPd_INC(i,j,n) = SCALING_FACTOR(i,j) * SImeltPd_day0(i,j,n) * deltat / 5days
-  SIqIce_INC(i,j,l,n) = SCALING_FACTOR(i,j) * SIqIce_day0(i,j,l,n)   * deltat / 5days
-  SIqSnow_INC(i,j,l,n)= SCALING_FACTOR(i,j) * SIqSnow_day0(i,j,l,n)  * deltat / 5days
+  The increments that we want to apply are, where M can equal N or not:
+  HEFFITD_INC(i,j,n)  = SCALING_FACTOR(i,j) * HEFFITD_dayN(i,j,n)  * deltat / Mdays
+  HSNOWITD_INC(i,j,n) = SCALING_FACTOR(i,j) * HSNOWITD_dayN(i,j,n) * deltat / Mdays
+  SImeltPd_INC(i,j,n) = SCALING_FACTOR(i,j) * SImeltPd_dayN(i,j,n) * deltat / Mdays
+  SIqIce_INC(i,j,l,n) = SCALING_FACTOR(i,j) * SIqIce_dayN(i,j,l,n) * deltat / Mdays
+  SIqSnow_INC(i,j,l,n)= SCALING_FACTOR(i,j) * SIqSnow_dayN(i,j,l,n)* deltat / Mdays
 
+>>>> ADD A TRAP ON ABOVE to make sure that all fields and categories remain positive
 
-  For locations where HEFF_GEOS_day0 (i,j) < HEFF_threshold
-              and ICESNO_ANALYSIS_INC(i,j) > HEFF_threshold
+  For locations where HEFF_GEOS_N (i,j) < HEFF_threshold
+             and ICESNO_ANALYSIS_INC(i,j) < HEFF_threshold
   set SCALING_FACTOR(i,j) = 0
 
   For locations where HEFF_GEOS_day0 (i,j) < HEFF_threshold
               and ICESNO_ANALYSIS_INC(i,j) > HEFF_threshold
   find a nearby location where:
-              ICESNO_ANALYSIS_INC(i,j) ~= HEFF_GEOS_day0(i,j)
+              GEOS frozen_volume(i_donor,j_donor) ~= HEFF_ECCO_dayN(i,j)
   and compute the SCALING_FACTOR and *_INC fields based on that nearby location.
 
   Initially, we can try: HEFF_threshold = 10 cm
 
-4. Run GEOS/ECCO for 5 days adding increments computed in1-3 above.
+4. Run GEOS/ECCO for 5 days adding increments computed in 1-3 above.
   - read in the *_INC fields computed above
   - add these increments in
     MIT_GEOS5PlugMod/configs/c90_llc90_02/code/seaice_save4gmao.F
