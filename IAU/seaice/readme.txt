@@ -25,19 +25,20 @@ Algorithm for IAU for CICE variables
    of total equivalent water
    then compute the difference for the ECCO estimate of that value (ie, sea-ice load)
 
+
   ICESNO_ANALYSIS_INC(i,j) =
   ( HEFF_GEOS_N * VOLICE_DENSITY + HSNOW_GEOS_N * VOLSNO_DENSITY ) - SICEload_N
+  and GEOS_frozen_volume_N(i,j) =
+  ( HEFF_GEOS_N * VOLICE_DENSITY + HSNOW_GEOS_N * VOLSNO_DENSITY )
 
-  SCALING_FACTOR(i,j) = ICESNO_ANALYSIS_INC(i,j) /
-                      ( HEFF_GEOS_N  * VOLICE_DENSITY +
-                        HSNOW_GEOS_N * VOLSNO_DENSITY )
+  SCALING_FACTOR(i,j) = ICESNO_ANALYSIS_INC(i,j) / GEOS_frozen_volume_N(i,j)
 
   The increments that we want to apply are, where M can equal N or not:
-  HEFFITD_INC(i,j,n)  = SCALING_FACTOR(i,j) * HEFFITD_dayN(i,j,n)  * deltat / Mdays
-  HSNOWITD_INC(i,j,n) = SCALING_FACTOR(i,j) * HSNOWITD_dayN(i,j,n) * deltat / Mdays
-  SImeltPd_INC(i,j,n) = SCALING_FACTOR(i,j) * SImeltPd_dayN(i,j,n) * deltat / Mdays
-  SIqIce_INC(i,j,l,n) = SCALING_FACTOR(i,j) * SIqIce_dayN(i,j,l,n) * deltat / Mdays
-  SIqSnow_INC(i,j,l,n)= SCALING_FACTOR(i,j) * SIqSnow_dayN(i,j,l,n)* deltat / Mdays
+  HEFFITD_INC(i,j,n)  = SCALING_FACTOR(i,j) * HEFFITD_N(i,j,n)  * deltat / Mdays
+  HSNOWITD_INC(i,j,n) = SCALING_FACTOR(i,j) * HSNOWITD_N(i,j,n) * deltat / Mdays
+  SImeltPd_INC(i,j,n) = SCALING_FACTOR(i,j) * SImeltPd_N(i,j,n) * deltat / Mdays
+  SIqIce_INC(i,j,l,n) = SCALING_FACTOR(i,j) * SIqIce_N(i,j,l,n) * deltat / Mdays
+  SIqSnow_INC(i,j,l,n)= SCALING_FACTOR(i,j) * SIqSnow_N(i,j,l,n)* deltat / Mdays
 
 >>>> ADD A TRAP ON ABOVE to make sure that all fields and categories remain positive
 
@@ -45,10 +46,10 @@ Algorithm for IAU for CICE variables
              and ICESNO_ANALYSIS_INC(i,j) < HEFF_threshold
   set SCALING_FACTOR(i,j) = 0
 
-  For locations where HEFF_GEOS_day0 (i,j) < HEFF_threshold
+  For locations where HEFF_GEOS_N (i,j) < HEFF_threshold
               and ICESNO_ANALYSIS_INC(i,j) > HEFF_threshold
   find a nearby location where:
-              GEOS frozen_volume(i_donor,j_donor) ~= HEFF_ECCO_dayN(i,j)
+              GEOS_frozen_volume_N(i_donor,j_donor) ~= SICEload_N(i,j)
   and compute the SCALING_FACTOR and *_INC fields based on that nearby location.
 
   Initially, we can try: HEFF_threshold = 10 cm
