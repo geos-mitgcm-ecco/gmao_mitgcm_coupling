@@ -1,7 +1,6 @@
 Algorithm for IAU for CICE variables
 
 1. Run GEOS/ECCO for N (e.g., 5) days
-
   On day N we dump:
   HEFFITD_N(i,j,n)
   HSNOWITD_N(i,j,n)
@@ -25,13 +24,12 @@ Algorithm for IAU for CICE variables
    of total equivalent water
    then compute the difference for the ECCO estimate of that value (ie, sea-ice load)
 
-
   ICESNO_ANALYSIS_INC(i,j) =
   ( HEFF_GEOS_N * VOLICE_DENSITY + HSNOW_GEOS_N * VOLSNO_DENSITY ) - SICEload_N
-  and GEOS_frozen_volume_N(i,j) =
+  and GEOS_frozen_load_N(i,j) =
   ( HEFF_GEOS_N * VOLICE_DENSITY + HSNOW_GEOS_N * VOLSNO_DENSITY )
 
-  SCALING_FACTOR(i,j) = ICESNO_ANALYSIS_INC(i,j) / GEOS_frozen_volume_N(i,j)
+  SCALING_FACTOR(i,j) = ICESNO_ANALYSIS_INC(i,j) / GEOS_frozen_load_N(i,j)
 
   The increments that we want to apply are, where M can equal N or not:
   HEFFITD_INC(i,j,n)  = SCALING_FACTOR(i,j) * HEFFITD_N(i,j,n)  * deltat / Mdays
@@ -42,22 +40,24 @@ Algorithm for IAU for CICE variables
 
 >>>> ADD A TRAP ON ABOVE to make sure that all fields and categories remain positive
 
-  For locations where HEFF_GEOS_N (i,j) < HEFF_threshold
-             and ICESNO_ANALYSIS_INC(i,j) < HEFF_threshold
+  For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
+             and ICESNO_ANALYSIS_INC(i,j) < SICEload_threshold
   set SCALING_FACTOR(i,j) = 0
 
-  For locations where HEFF_GEOS_N (i,j) < HEFF_threshold
-              and ICESNO_ANALYSIS_INC(i,j) > HEFF_threshold
+  For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
+              and ICESNO_ANALYSIS_INC(i,j) > SICEload_threshold
   find a nearby location where:
-              GEOS_frozen_volume_N(i_donor,j_donor) ~= SICEload_N(i,j)
+              GEOS_frozen_load_N(i_donor,j_donor) ~= SICEload_N(i,j)
   and compute the SCALING_FACTOR and *_INC fields based on that nearby location.
 
-  Initially, we can try: HEFF_threshold = 10 cm
+  Initially, we can try: SICEload_threshold = 100 kg/m^2
 
-4. Run GEOS/ECCO for 5 days adding increments computed in 1-3 above.
+4. Run GEOS/ECCO for N days adding increments computed in 1-3 above during the first M days.
   - read in the *_INC fields computed above
   - add these increments in
     MIT_GEOS5PlugMod/configs/c90_llc90_02/code/seaice_save4gmao.F
+
+>>>> double-check category/levels of snow and ice
 
               SIadv_Heff  (i,j,n,bi,bj) = HEFFITD (i,j,n,bi,bj)
      &                              - SIadv_Heff  (i,j,n,bi,bj)
@@ -74,7 +74,6 @@ Algorithm for IAU for CICE variables
               SIadv_qSnow(i,j,l,n,bi,bj) = SIqSnow(i,j,l,n,bi,bj)
      &                               - SIadv_qSnow(i,j,l,n,bi,bj)
      &                              + SIqSnow_INC(i,j,l,n,bi,bj) 
-
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>
