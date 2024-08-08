@@ -24,6 +24,8 @@ Algorithm for IAU for CICE variables
    of total equivalent water
    then compute the difference for the ECCO estimate of that value (ie, sea-ice load)
 
+The density of ice and snow are 917 and 330 respectively, as set in CICE4/drivers/ice_constants.F90.
+
   ICESNO_ANALYSIS_INC(i,j) =
   ( HEFF_GEOS_N * VOLICE_DENSITY + HSNOW_GEOS_N * VOLSNO_DENSITY ) - SICEload_N
   and GEOS_frozen_load_N(i,j) =
