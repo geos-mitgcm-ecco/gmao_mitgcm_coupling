@@ -61,19 +61,19 @@ Algorithm for IAU for CICE variables
 
               SIadv_Heff  (i,j,n,bi,bj) = HEFFITD (i,j,n,bi,bj)
      &                              - SIadv_Heff  (i,j,n,bi,bj)
-     &                              + HEFFITD_INC(i,j,n,bi,bj) 
+     &                              - HEFFITD_INC(i,j,n,bi,bj) 
               SIadv_Hsnow (i,j,n,bi,bj) = HSNOWITD(i,j,n,bi,bj)
      &                              - SIadv_Hsnow (i,j,n,bi,bj)
-     &                              + HSNOWITD_INC(i,j,n,bi,bj) 
+     &                              - HSNOWITD_INC(i,j,n,bi,bj) 
               SIadv_meltPd(i,j,n,bi,bj) = SImeltPd(i,j,n,bi,bj)
      &                              - SIadv_meltPd(i,j,n,bi,bj)
-     &                              + SImeltPd_INC(i,j,n,bi,bj) 
+     &                              - SImeltPd_INC(i,j,n,bi,bj) 
               SIadv_qIce (i,j,l,n,bi,bj) = SIqIce (i,j,l,n,bi,bj)
      &                               - SIadv_qIce (i,j,l,n,bi,bj)
-     &                              + SIqIce_INC(i,j,l,n,bi,bj) 
+     &                              - SIqIce_INC(i,j,l,n,bi,bj) 
               SIadv_qSnow(i,j,l,n,bi,bj) = SIqSnow(i,j,l,n,bi,bj)
      &                               - SIadv_qSnow(i,j,l,n,bi,bj)
-     &                              + SIqSnow_INC(i,j,l,n,bi,bj) 
+     &                              - SIqSnow_INC(i,j,l,n,bi,bj) 
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>
