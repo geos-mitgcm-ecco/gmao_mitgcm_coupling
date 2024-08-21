@@ -1,0 +1,8 @@
+# IAU parameters 
+# SIheffN/SIhsnowN/SImeltPd/SIqSnow + SIqIce
+ &IAU_PARMS
+ analysisFile(1) = 'output_noRBCS/iceNcat.0000000000.data',
+ analysisFile(2) = 'output_noRBCS/iceNcat_qice.0000000000.data',
+ eccoFile        = 'eccov4r4/sIceLoad.0000000000.data',
+ Mdays           = 5.0,
+ /
