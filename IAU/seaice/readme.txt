@@ -43,14 +43,14 @@ The density of ice and snow are 917 and 330 respectively, as set in CICE4/driver
 >>>> ADD A TRAP ON ABOVE to make sure that all fields and categories remain positive
 
   For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
-             and ICESNO_ANALYSIS_INC(i,j) < SICEload_threshold
-  set SCALING_FACTOR(i,j) = 0
-
-  For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
-              and ICESNO_ANALYSIS_INC(i,j) > SICEload_threshold
+              and ICESNO_ANALYSIS_INC(i,j) < 0
   find a nearby location where:
               GEOS_frozen_load_N(i_donor,j_donor) ~= SICEload_N(i,j)
   and compute the SCALING_FACTOR and *_INC fields based on that nearby location.
+
+  For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
+             and ICESNO_ANALYSIS_INC(i,j) = 0
+  set SCALING_FACTOR(i,j) = 0
 
   Initially, we can try: SICEload_threshold = 100 kg/m^2
 
