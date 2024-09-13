@@ -44,9 +44,10 @@ The density of ice and snow are 917 and 330 respectively, as set in CICE4/driver
 
   For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
               and ICESNO_ANALYSIS_INC(i,j) < 0
-  find a nearby location where:
+  grab values from North Pole
+       if above does not work, we could try to find a nearby location where:
               GEOS_frozen_load_N(i_donor,j_donor) ~= SICEload_N(i,j)
-  and compute the SCALING_FACTOR and *_INC fields based on that nearby location.
+       and compute the SCALING_FACTOR and *_INC fields based on that nearby location.
 
   For locations where GEOS_frozen_load_N(i,j) < SICEload_threshold
              and ICESNO_ANALYSIS_INC(i,j) >= 0
