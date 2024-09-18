@@ -7,6 +7,12 @@
 	parameter (nSnowLayers=1,nIceLayers=4,nITD=5)
 	parameter (siz2d=nx*ny, siz3d=nx*ny*nITD)
 	parameter (siz4d=nx*ny*nIceLayers*nITD)
+
+	integer*4 inp1, inp2, inp3, inp4
+	integer*4 jnp1, jnp2, jnp3, jnp4
+	parameter (inp1=45, inp2=46, inp3=45, inp4=46)
+	parameter (jnp1=585,jnp2=585,jnp3=586,jnp4=586)
+
 c	
 c	iceNcat	
 c	fldList = 'SIheffN ' 'SIhsnowN' 'SImeltPd' 'SIqSnow'
@@ -117,6 +123,7 @@ c scaling
 	n   = 0
 	DO j=1,ny
 	DO i=1,nx
+c case1	normal
 	  IF (GEOS_frozen_load(i,j) .GE. SICEload_threshold) THEN
 	  SCALING_FACTOR(i,j) = ICESNO_ANALYSIS_INC(i,j) /
      &                 GEOS_frozen_load(i,j)
@@ -127,6 +134,23 @@ c scaling
 	  ENDIF
 	ENDDO
 	ENDDO
+	DO j=1,ny
+	DO i=1,nx
+c case2	thin, goes<ecco
+	  IF (GEOS_frozen_load(i,j) .LT. SICEload_threshold .and.
+     &                 ICESNO_ANALYSIS_INC(i,j) .LT. 0) THEN
+	  SCALING_FACTOR(i,j) = (SCALING_FACTOR(inp1,jnp1) + 
+     &                           SCALING_FACTOR(inp2,jnp2) +
+     &                           SCALING_FACTOR(inp3,jnp3) +
+     &                           SCALING_FACTOR(inp4,jnp4) )/4.
+     		vmax = MAX(vmax, SCALING_FACTOR(i,j))
+     		vmin = MIN(vmin, SCALING_FACTOR(i,j))
+		vmmn = vmmn + SCALING_FACTOR(i,j)
+		n = n + 1
+	  ENDIF
+	ENDDO
+	ENDDO
+c case3	thin, goes>=ecco already set by SCALING_FACTOR=0
 	print *, 'max=', vmax
 	print *, 'min=', vmin
 	print *, 'mean=', vmmn/real(n)
