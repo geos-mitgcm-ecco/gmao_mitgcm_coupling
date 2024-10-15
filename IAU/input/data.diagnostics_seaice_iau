@@ -30,7 +30,7 @@
 
  &DIAGNOSTICS_LIST
  frequency(9) = -1.0,
-    fields(1:4,9) = 'SIheffN ','SIhsnowN','SImeltPd','SIqSnow ',
+    fields(1:5,9) = 'SIheffN ','SIhsnowN','SImeltPd','SIqSnow ', 'SIareaN ',
     timePhase(9) = 0.,
     fileName(9) = 'iceNcat',
  frequency(1) = -1.0,
