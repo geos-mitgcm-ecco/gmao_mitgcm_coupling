@@ -253,6 +253,8 @@ C-        start loop on ice-category "n"
      &                           - RBCsi(i,j,k+15,bi,bj)
               SIadv_meltPd(i,j,n,bi,bj) = SIadv_meltPd(i,j,n,bi,bj)
      &                           - RBCsi(i,j,k+20,bi,bj)
+              SIadv_Area  (i,j,n,bi,bj) = SIadv_Area  (i,j,n,bi,bj)
+     &                           - RBCsi(i,j,k+10,bi,bj)
             ENDDO
            ENDDO
            DO l=1,nSnowLayers
