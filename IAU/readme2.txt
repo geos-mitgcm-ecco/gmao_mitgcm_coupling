@@ -110,16 +110,16 @@ You must now copy your Initial Conditions into:
 cd /nobackupnfs1/hzhang1/geos5/GEOSMIT6
 
 #copy GEOS restarts
-cp /nobackupp11/afahad/GEOSMITgcmFiles/restarts_org/* .
+cp /nobackupp27/afahad/GEOSMITgcmFiles/restarts_org/* .
 
 #copy mit input dir
-cp -r /nobackupp11/afahad/GEOSMITgcmFiles/mit_input_llc90_02/ mit_input
+cp -r /nobackupp27/afahad/GEOSMITgcmFiles/mit_input_llc90_02/ mit_input
 cp ${pp}/gmao_mitgcm_coupling/IAU/input/data* mit_input/
 cp /nobackup/hzhang1/for_Fahad/IAU/mask3D.data mit_input/
 
 
 # copy env script
-cp /nobackupp11/afahad/GEOSMITgcmFiles/geosmitenv_v11.1.1.sh .
+cp /nobackupp27/afahad/GEOSMITgcmFiles/geosmitenv_v11.1.1.sh .
 
 ./geosmitenv_v11.1.1.sh
 
