@@ -58,8 +58,8 @@ echo running no RBCS
 cd ..
 
 #step2
-sed -i "s/${t0}/${t1}/" data.iau
-sed -i "s/${t0}/${t1}/" data.iau_seaice
+sed -i "s/00000.*/${t1}.data',/" data.iau
+sed -i "s/00000.*/${t1}.data',/" data.iau_seaice
 ./ecco_iau
 ./ecco_iau_seaice >| SIseg.$seg
 
