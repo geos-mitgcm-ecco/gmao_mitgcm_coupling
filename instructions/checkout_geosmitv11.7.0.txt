@@ -38,7 +38,68 @@ cd ../install/bin/
 mv gcm_setup gcm_setup_org
 \cp $files/gcm_setup .
 
+./gcm_setup
+Enter the Experiment ID:
+TEST_c180
+Enter a 1-line Experiment Description:
+C180
+Do you wish to CLONE an old experiment? (Default: NO or FALSE)
+NO
+Enter the Atmospheric Horizontal Resolution code:
+c180
 
+Enter the Atmospheric Model Vertical Resolution: LM (Default: 72)
+
+Enter Choice for Atmospheric Model Microphysics: (Default: BACM_1M)
+
+MGB2_2M
+Use Hydrostatic Atmosphere? (Default: TRUE)
+
+Do you wish to IOSERVER? (Default: YES or TRUE)
+
+Enter the Processor Type you wish to run on:
+   sky (Skylake) (default)
+
+Do you wish to run the COUPLED Ocean/Sea-Ice Model? (Default: NO or FALSE)
+YES
+
+Choose an Ocean Model: (Default: MOM6)
+   MIT
+Choose a Seaice Model: (Default: CICE4)
+Enter the Ocean Model Vertical Resolution: LM (Default: 50)
+
+Do you wish to run Data Atmosphere? (Default: NO or FALSE)
+
+Enter the choice of  Land Surface Boundary Conditions using: ICA (Icarus), NL3 (Default: Icarus-NLv3), or v12
+
+Enter the choice of  Land Surface Model using: 1 (Default: Catchment) or 2 (CatchmentCN-CLM4.0 (CN_CLM40))
+Do you wish to run GOCART with Actual or Climatological Aerosols? (Enter: A (Default) or C)
+Enter the GOCART Emission Files to use: AMIP (Default) or OPS:
+
+Enter HEARTBEAT_DT to use
+450
+Enter the filename of the HISTORY template to use
+-----------------------------------------------------------
+
+Using HISTORY.AOGCM_MITgcm.rc.tmpl
+ 
+Enter Desired Location for the HOME Directory (to contain scripts and RC files)
+Hit ENTER to use Default Location:
+----------------------------------
+Default:  /nobackupp27/afahad/exp/test
+
+Enter Desired Location for the EXPERIMENT Directory (to contain model output and restart files)
+Hit ENTER to use Default Location:
+----------------------------------
+Default:  /nobackupp27/afahad/exp/test
+
+Enter Location for Build directory containing:  bin/ etc/ include/ etc...
+Hit ENTER to use Default Location:
+----------------------------------
+Default:  /nobackupp27/afahad/GEOSv11/GEOSMITv11.7/GEOSgcm/install
+
+Current GROUPS: 
+Enter your GROUP ID for Current EXP: 
 
 # cd to exp dir
 tcsh
