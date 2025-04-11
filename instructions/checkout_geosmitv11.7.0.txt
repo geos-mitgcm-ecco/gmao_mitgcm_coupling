@@ -1,0 +1,66 @@
+# get tag
+
+git clone git@github.com:GEOS-ESM/GEOSgcm.git
+cd GEOSgcm
+set dir=$PWD
+set files=/nobackupp27/afahad/GEOSv11/GEOSMITv11.7/GEOSMITgcmfiles
+git checkout tags/v11.1.1
+
+module use -a /nobackup/gmao_SIteam/modulefiles
+module load GEOSenv
+mepo config set clone.partial blobless
+mepo clone
+source @env/g5_modules
+
+\cp -r $files/c180_llc270_01 $dir/src/Components/@GEOSgcm_GridComp/GEOSogcm_GridComp/@GEOS_OceanGridComp/MIT_GEOS5PlugMod/configs/
+
+\cp $files/CMakeLists.txt $dir/src/Components/@GEOSgcm_GridComp/GEOSogcm_GridComp/@GEOS_OceanGridComp/MIT_GEOS5PlugMod/
+\cp $files/build_options.intel $dir/src/Components/@GEOSgcm_GridComp/GEOSogcm_GridComp/@GEOS_OceanGridComp/MIT_GEOS5PlugMod/mitgcm_setup/
+
+\cp -r $files/GEOS_OgcmGridComp.F90 $dir/src/Components/@GEOSgcm_GridComp/GEOSogcm_GridComp/GEOS_OgcmGridComp.F90
+
+# build
+
+mkdir build
+cd build
+
+
+cmake .. -DBASEDIR=$BASEDIR/Linux -DCMAKE_INSTALL_PREFIX=../install -DBUILD_MIT_OCEAN=ON -DMIT_CONFIG_ID=c180_llc270_01 -DCMAKE_Fortran_COMPILER=ifort
+
+
+# try being in compute nodes if the pfe is slow. do source @env/g5_modules before doing make. 
+
+make -j 12 install 
+
+# setup
+
+cd ../install/bin/
+mv gcm_setup gcm_setup_org
+\cp $files/gcm_setup .
+
+
+
+# cd to exp dir
+tcsh
+
+\cp -r $files/mit_input .
+\cp -r $files/restarts/* .
+mv HISTORY.rc HISTORY.rc_Org
+mv AGCM.rc AGCM.rc_Org
+mv linkbcs linkbcs_org
+\cp -r $files/*.rc .
+\cp -r $files/WSUB_ExtData.* RC/
+sed -i 's#:$GEOSDIR/lib/libCICE4\.so ##' gcm_run.j
+sed -i 's#if ( (-e \$SCRDIR/openwater_internal_rst) && (-e \$SCRDIR/seaicethermo_internal_rst)) then#if ((-e \$SCRDIR/openwater_internal_rst)) then#' gcm_run.j
+
+ed -s HISTORY.rc <<EOF
+1,5d
+0r !head -n 5 HISTORY.rc_Org
+w
+q
+EOF
+
+
+# submit run
+
+qsub gcm_run.j
