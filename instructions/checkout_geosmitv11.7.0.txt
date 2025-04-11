@@ -4,7 +4,7 @@ git clone git@github.com:GEOS-ESM/GEOSgcm.git
 cd GEOSgcm
 set dir=$PWD
 set files=/nobackupp27/afahad/GEOSv11/GEOSMITv11.7/GEOSMITgcmfiles
-git checkout tags/v11.1.1
+git checkout tags/v11.7.0
 
 module use -a /nobackup/gmao_SIteam/modulefiles
 module load GEOSenv
