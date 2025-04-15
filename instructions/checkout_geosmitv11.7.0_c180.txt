@@ -28,7 +28,7 @@ cd build
 cmake .. -DBASEDIR=$BASEDIR/Linux -DCMAKE_INSTALL_PREFIX=../install -DBUILD_MIT_OCEAN=ON -DMIT_CONFIG_ID=c180_llc270_01 -DCMAKE_Fortran_COMPILER=ifort
 
 
-# try being in compute nodes if the pfe is slow. do source @env/g5_modules before doing make. 
+# try being in compute nodes (better on sky_ele) if the pfe is slow. do source @env/g5_modules before doing make. 
 
 make -j 12 install 
 
