@@ -112,15 +112,28 @@ You must now copy your Initial Conditions into:
 cd /nobackupp27/afahad/exp/GEOSMIT_29test
 
 #copy GEOS restarts
-cp /nobackupp27/afahad/GEOSMITgcmFiles/restarts-orig/* .
+\cp /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/IC/* .
 
 #copy mit input dir
-cp -r /nobackupp27/afahad/GEOSMITgcmFiles/mit_input_llc90_02/ mit_input
-
+cp -r /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/mit_input mit_input
+ 
 # copy env script
-cp /nobackupp27/afahad/GEOSMITgcmFiles/geosmitenv_v11.1.1.sh .
+mv HISTORY.rc HISTORY.rc_Org
+mv AGCM.rc AGCM.rc_Org
+mv linkbcs linkbcs_org
 
-./geosmitenv_v11.1.1.sh
+\cp -r /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/*.rc .
+\cp -r /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/WSUB_ExtData.* RC/
+
+sed -i 's#:$GEOSDIR/lib/libCICE4\.so ##' gcm_run.j
+sed -i 's#if ( (-e \$SCRDIR/openwater_internal_rst) && (-e \$SCRDIR/seaicethermo_internal_rst)) then#if ((-e \$SCRDIR/openwater_internal_rst)) then#' gcm_run.j
+
+ed -s HISTORY.rc <<EOF
+1,5d
+0r !head -n 5 HISTORY.rc_Org
+w
+q
+EOF
 
 #submit job
 
