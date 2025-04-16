@@ -38,11 +38,6 @@ source ../@env/g5_modules
 
 cd ../install/bin/
 
-sed -i 's|setenv MASDIR /u/$LOGNAME/GEOS5.0/$expid|#setenv MASDIR /u/$LOGNAME/GEOS5.0/$expid|g' ../post/gcmpost.script
-
-sed -i '596i \ \ \ \ \ \ \ set DEFAULT_HISTORY_TEMPLATE="HISTORY.AOGCM.rc.tmpl"' gcm_setup
-
-
 
 # creating exp from install/bin/ directory
 
