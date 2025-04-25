@@ -124,6 +124,7 @@ mv linkbcs linkbcs_org
 
 \cp -r /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/*.rc .
 \cp -r /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/WSUB_ExtData.* RC/
+\cp /nobackupp27/afahad/GEOSMITgcmFiles/C90llc90/linkbcs .
 
 sed -i 's#:$GEOSDIR/lib/libCICE4\.so ##' gcm_run.j
 sed -i 's#if ( (-e \$SCRDIR/openwater_internal_rst) && (-e \$SCRDIR/seaicethermo_internal_rst)) then#if ((-e \$SCRDIR/openwater_internal_rst)) then#' gcm_run.j
