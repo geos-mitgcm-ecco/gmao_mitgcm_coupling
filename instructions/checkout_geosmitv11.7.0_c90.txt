@@ -129,12 +129,10 @@ mv linkbcs linkbcs_org
 sed -i 's#:$GEOSDIR/lib/libCICE4\.so ##' gcm_run.j
 sed -i 's#if ( (-e \$SCRDIR/openwater_internal_rst) && (-e \$SCRDIR/seaicethermo_internal_rst)) then#if ((-e \$SCRDIR/openwater_internal_rst)) then#' gcm_run.j
 
-ed -s HISTORY.rc <<EOF
-1,5d
-0r !head -n 5 HISTORY.rc_Org
-w
-q
-EOF
+set tmp = /tmp/HISTORY.rc.$$ 
+head -n 5 HISTORY.rc_Org > $tmp
+tail -n +6 HISTORY.rc >> $tmp
+\cp $tmp HISTORY.rc
 
 #submit job
 
