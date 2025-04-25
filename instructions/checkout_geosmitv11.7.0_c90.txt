@@ -56,7 +56,7 @@ c90
 Enter the Atmospheric Model Vertical Resolution: LM (Default: 72)
 72
 Enter Choice for Atmospheric Model Microphysics: (Default: BACM_1M)
-BACM_1M
+MGB2_2M
 
 Use Hydrostatic Atmosphere? (Default: TRUE)
 TRUE
