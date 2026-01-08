@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geos-c1440-tools"
+version = "0.1.0"
+description = "Download and regrid NASA GEOS C1440 collections to regular lat-lon grids."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "Apache-2.0"}
+authors = [{name = "Community"}]
+dependencies = [
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
+  "python-dateutil>=2.8",
+  "numpy>=1.21",
+  "xarray>=2023.1",
+  "netcdf4>=1.6",
+  "pyresample>=1.28",
+  "matplotlib>=3.5",
+]
+
+[project.optional-dependencies]
+cartopy = ["cartopy>=0.21"]
+dask = ["dask[array]>=2023.1"]
+
+[project.scripts]
+geos-c1440 = "geos_c1440_tools.cli:main"
