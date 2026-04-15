@@ -1,22 +1,60 @@
-restarts   restart and configuration files for each segment
+Model output is available on NASA Ames HEC:
 
-holding    GEOS atmospheric model output collections
+ GEOS atmospheric model output collections:
+ /nobackupp27/dmenemen/public/geos_ecco/c1440_llc2160/holding
 
-mit_output MITgcm oceanic model output files
+ MITgcm oceanic model output files:
+ /nobackupp27/dmenemen/public/geos_ecco/c1440_llc2160/mit_output
 
-figs       figures, including the MITgcm MONITOR collection and
-           examination of some model issues
+ Restart and configuration files for each integration segment:
+ /nobackupp27/dmenemen/DYAMOND/c1440_llc2160/restarts
+
+ Some figures, including the MITgcm MONITOR collection:
+ /nobackupp27/dmenemen/DYAMOND/c1440_llc2160/figs
+
+ Some regional cutouts
+ /nobackupp27/dmenemen/DYAMOND/c1440_llc2160/regions
+
+ Surface currents in netcdf format are also available in folder:
+ /nobackup/htorresg/air_sea/ocean-atmos/NCFILES/geosgcm_surf_tides_4km/
+
+Model output is also available on the NASA Ames data portal:
+ https://data.nas.nasa.gov/geosecco//c1440_llc2160/
+
+Model output is also available on SciServer:
+ https://www.poseidon-ocean.net/access-process-for-the-dyamond-dataset-on-sciserver/
+
+Some model output is also available on the NCCS Public Data Portal:
+ https://gmao.gsfc.nasa.gov/gmao-products/dyamond-phase-ii/
+ https://gmao.gsfc.nasa.gov/gmao-products/dyamond-phase-ii/data-access_dyamond-phase-ii/
+ https://portal.nccs.nasa.gov/datashare/G5NR/DYAMONDv2/GEOS_6km_Atmosphere-MITgcm_4km_Ocean-Coupled/
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Visualizations:
-https://portal.nccs.nasa.gov/datashare/g6dev/WebGL/geos_dyamondv2.html
-https://data.nas.nasa.gov/viz/vizdata/DYAMOND_c1440_llc2160/GEOS/index.html
-https://data.nas.nasa.gov/viz/vizdata/DYAMOND_c1440_llc2160/MITgcm/index.html
-https://data.nas.nasa.gov/viz/data.php?dir=/vizdata/nmccurdy/DYAMOND_c1440_llc2160/native_grid
+
+ Field-by-field animations of GEOS Atmosphere-related output:
+ https://data.nas.nasa.gov/geoseccoviz/c1440_llc2160/GEOS/ 
+
+ Field-by-field animations of MITgcm Ocean-related output:
+ https://data.nas.nasa.gov/geoseccoviz/c1440_llc2160/MITgcm/
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-Surface currents in netcdf format are also available in folder:
-/nobackup/htorresg/air_sea/ocean-atmos/NCFILES/geosgcm_surf_tides_4km/
+Github repo:
+ https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling
+
+ Integration set-up:
+ https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling/tree/master/DYAMOND/experiments/c1440_llc2160_02
+ https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling/tree/master/DYAMOND/experiments/c1440_llc2160_02/code
+ https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling/tree/master/DYAMOND/experiments/c1440_llc2160_02/input
+ https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling/tree/master/DYAMOND/experiments/c1440_llc2160_02/geos
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Matlab tools:
+ https://github.com/geos-mitgcm-ecco/gmao_mitgcm_coupling/tree/master/DYAMOND/experiments/c1440_llc2160_02/matlab
+
+Poseidon Project for SciNet access:
+ https://www.poseidon-ocean.net/
+ https://www.poseidon-ocean.net/products/datasets/
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Description of simulation segments:
