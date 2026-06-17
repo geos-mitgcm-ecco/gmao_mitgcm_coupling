@@ -59,7 +59,7 @@
  useSingleCpuIO=.TRUE.,
  readBinaryPrec=32,
  writeBinaryPrec=32,
- debugLevel=4,
+ debugLevel=-1,
  &
 
 # Elliptic solver parameters
@@ -118,12 +118,7 @@
 
 # Input datasets
  &PARM05
-# bathyFile      ='bathy_shallow.bin',
-# bathyFile      ='bathy_global.bin',
  bathyFile      ='bathy_cs32.bin',
-# bathyFile      ='bathy_north.bin',
-# bathyFile      ='bathy_south.bin',
-# hydrogThetaFile='some_T_atlas.bin',
-# hydrogSaltFile ='some_S_atlas.bin',
-#diffKrFile = ' ', 
+# hydrogThetaFile='lev_T_cs_15k.bin',
+# hydrogSaltFile ='lev_S_cs_15k.bin',
  &

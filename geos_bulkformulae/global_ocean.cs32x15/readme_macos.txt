@@ -15,14 +15,15 @@ set-up and run global_ocean.cs32x15 with GEOS bulk formulae on Apple silicon
  mkdir build_tst run_tst
  cd build_tst
  GEOSDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/global_ocean.cs32x15
- $GEOSDIR/genmake2 -devel -mods "$GEOSDIR/geos_blkf $GEOSDIR/cod_tst" -of $GEOSDIR/darwin_arm64_gfortran
+ $GEOSDIR/genmake2 -mods "$GEOSDIR/geos_blkf $GEOSDIR/cod_tst" -of $GEOSDIR/darwin_arm64_gfortran
  make depend
  make -j
 
 # Run the experiment
  cd $WORKDIR/MITgcm/verification/global_ocean.cs32x15/run_tst
+ ln -sf ../build_tst/mitgcmuv .
+ ln -s ../input/bathy_cs32.bin .
  ln -s ../../tutorial_held_suarez_cs/input/grid_cs32* .
  ln -s $WORKDIR/ecco_darwin/v04/3deg/data/EIG* .
- ln -sf ../build_tst/mitgcmuv .
  cp $GEOSDIR/inp_tst_af/* .
  ./mitgcmuv
