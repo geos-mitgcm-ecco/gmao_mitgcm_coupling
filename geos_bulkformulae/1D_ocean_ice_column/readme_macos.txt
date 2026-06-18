@@ -12,20 +12,18 @@ set-up and run global_ocean.cs32x15 with GEOS bulk formulae on Apple silicon
  mv MITgcm MITgcm_68n
 
 # Build executable
- cd $WORKDIR/MITgcm_68n/verification/global_ocean.cs32x15
+ cd $WORKDIR/MITgcm_68n/verification/1D_ocean_ice_column
  mkdir build_tst run_tst
  cd build_tst
  TOOLDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/tools
- GEOSDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/global_ocean.cs32x15
- $TOOLDIR/genmake2 -mods "$GEOSDIR/geos_blkf $GEOSDIR/cod_tst" -of $TOOLDIR/darwin_arm64_gfortran
+ GEOSDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/1D_ocean_ice_column
+ $TOOLDIR/genmake2 -mods $GEOSDIR/code -of $TOOLDIR/darwin_arm64_gfortran
  make depend
  make -j
 
 # Run the experiment
- cd $WORKDIR/MITgcm_68n/verification/global_ocean.cs32x15/run_tst
+ cd $WORKDIR/MITgcm_68n/verification/1D_ocean_ice_column/run_tst
  ln -sf ../build_tst/mitgcmuv .
- ln -s ../input/bathy_cs32.bin .
- ln -s ../../tutorial_held_suarez_cs/input/grid_cs32* .
- ln -s $WORKDIR/ecco_darwin/v04/3deg/data/EIG* .
- cp $GEOSDIR/inp_tst_af/* .
+ cp ../input/* .
+ cp $GEOSDIR/input/* .
  ./mitgcmuv
