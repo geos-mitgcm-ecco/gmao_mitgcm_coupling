@@ -1,4 +1,4 @@
-set-up and run global_ocean.cs32x15 with GEOS bulk formulae on Apple silicon
+set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
 ============================================================================
 
 # Define a working directory
@@ -12,18 +12,18 @@ set-up and run global_ocean.cs32x15 with GEOS bulk formulae on Apple silicon
  mv MITgcm MITgcm_68n
 
 # Build executable
- cd $WORKDIR/MITgcm_68n/verification/1D_ocean_ice_column
- mkdir build_tst run_tst
- cd build_tst
+ mkdir $WORKDIR/MITgcm_68n/build
+ cd $WORKDIR/MITgcm_68n/build
  TOOLDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/tools
- GEOSDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/1D_ocean_ice_column
+ GEOSDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/compare_bulkformulae
  $TOOLDIR/genmake2 -mods $GEOSDIR/code -of $TOOLDIR/darwin_arm64_gfortran
  make depend
  make -j
 
 # Run the experiment
- cd $WORKDIR/MITgcm_68n/verification/1D_ocean_ice_column/run_tst
- ln -sf ../build_tst/mitgcmuv .
- cp ../input/* .
+ mkdir $WORKDIR/MITgcm_68n/run
+ cd $WORKDIR/MITgcm_68n/run
+ ln -sf ../build/mitgcmuv .
+ cp $WORKDIR/MITgcm_68n/verification/1D_ocean_ice_column/input/* .
  cp $GEOSDIR/input/* .
- ./mitgcmuv
+ ./mitgcmuv > output.txt

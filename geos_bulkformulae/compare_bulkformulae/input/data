@@ -74,6 +74,7 @@
  vectorInvariantMomentum=.TRUE.,
  useRealFreshWaterFlux = .TRUE.,
 # debugLevel=1,
+ globalFiles=.TRUE.,
  &
 
 # Elliptic solver parameters
