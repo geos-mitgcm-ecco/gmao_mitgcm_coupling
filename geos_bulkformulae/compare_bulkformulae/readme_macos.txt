@@ -24,6 +24,6 @@ set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
  mkdir $WORKDIR/MITgcm_68n/run
  cd $WORKDIR/MITgcm_68n/run
  ln -sf ../build/mitgcmuv .
- cp $WORKDIR/MITgcm_68n/verification/1D_ocean_ice_column/input/* .
  cp $GEOSDIR/input/* .
+# Use matlab to execute gendata.m
  ./mitgcmuv > output.txt
