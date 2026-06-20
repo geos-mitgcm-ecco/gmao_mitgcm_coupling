@@ -3,20 +3,13 @@
 # === CALCULATED BULK FORMULAE FLUXES ===
   fields(1,1)  = 'EXFhs',
   fields(2,1)  = 'EXFhl',
-  fields(3,1)  = 'EXFlwnet',
-  fields(4,1)  = 'EXFswnet',
-  fields(5,1)  = 'EXFtaux',
-  fields(6,1)  = 'EXFtauy',
+  fields(3,1)  = 'EXFtaux',
 
 # === INPUT ATMOSPHERIC FORCING FIELDS ===
-  fields(7,1)  = 'EXFatemp',
-  fields(8,1)  = 'EXFaqh',
-  fields(9,1)  = 'EXFuwind',
-  fields(10,1) = 'EXFvwind',
-  fields(11,1) = 'EXFwspee',
-  fields(12,1) = 'EXFlwdn',
-  fields(13,1) = 'EXFswdn',
-  
+  fields(4,1)  = 'EXFatemp',
+  fields(5,1)  = 'EXFaqh',
+  fields(6,1)  = 'EXFuwind',
+
 # === FILE PROPERTIES ===
   fileName(1)  = 'bulk_fluxes',
   frequency(1) = 3600.0,
