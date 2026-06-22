@@ -1,8 +1,8 @@
 % Define testing values for each parameter
-sst_vals  = [-2 1 5 10 15 18 20 25 28 33 35 38];               % Sea Surface Temp (°C)
-temp_vals = [-40 -30 -20 -10 0  5 10 15 20 22 25 30 35 40 45]; % Air Temp (°C)
-rh_vals   = [10 20 30 40 45 50 60 70 80 85 90 100];            % Relative Humidity (%)
-wind_vals = [0 1 3 5 7.5 10 15 20 30 40 50 60 75 100];         % Wind speed (m/s)
+sst_vals  = [-2 1 5 10 15 18 20 22 25 28 33 35 38];                % Sea Surface Temp (°C)
+temp_vals = [-40 -30 -20 -10 0 2 5 10 15 19 20 22 25 30 35 40 45]; % Air Temp (°C)
+rh_vals   = [10 20 30 40 45 50 60 70 75 80 85 90 100];             % Relative Humidity (%)
+wind_vals = [0 1 3 5 6 7.5 8 10 12 15 20 25 30 40 50 60 75 100];   % Wind speed (m/s)
 
 % Define domain dimensions matching code/SIZE.h
 Nx = length(sst_vals)*length(temp_vals);

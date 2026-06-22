@@ -5,8 +5,8 @@ clear; clc; close all;
 files  = {'bulk_large_pond','bulk_yeager04','bulk_yeager09','bulk_GEOS'};
 labels = {'Large & Pond, 1981/82','Large & Yeager, 2004','Large & Yeager, 2009','GEOS BULKF'};
 vars   = {'hs','hl','taux','temp','qh','wind','sst'};
-Nx     = 180;         % Number of X-grid points
-Ny     = 168;         % Number of Y-grid points
+Nx     = 221;         % Number of X-grid points
+Ny     = 234;         % Number of Y-grid points
 Nf     = length(files);
 Nv     = length(vars);
 
