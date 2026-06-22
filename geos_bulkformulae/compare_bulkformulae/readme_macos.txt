@@ -29,6 +29,10 @@ set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
  make clean
  make -j
  mv mitgcmuv mitgcmuv_yeager09
+ cp $GEOSDIR/code/EXF_OPTIONS.h_GEOS EXF_OPTIONS.h
+ make clean
+ make -j
+ mv mitgcmuv mitgcmuv_GEOS
 
 # Run the experiment
  mkdir $WORKDIR/MITgcm_68n/run
@@ -42,3 +46,5 @@ set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
  mv bulk_fluxes.0000000001.data bulk_yeager04
  ./mitgcmuv_yeager09 > output_yeager09.txt
  mv bulk_fluxes.0000000001.data bulk_yeager09
+ ./mitgcmuv_GEOS > output_bulk_GEOS.txt
+ mv bulk_fluxes.0000000001.data bulk_GEOS
