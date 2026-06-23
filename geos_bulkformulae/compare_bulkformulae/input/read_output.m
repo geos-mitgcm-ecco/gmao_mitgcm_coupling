@@ -2,8 +2,8 @@
 clear; clc; close all;
 
 % Define File Paths and Configuration Constants
-files  = {'bulk_large_pond','bulk_yeager04','bulk_yeager09','bulk_GEOS'};
-labels = {'Large & Pond, 1981/82','Large & Yeager, 2004','Large & Yeager, 2009','GEOS BULKF'};
+files  = {'bulk_large_pond','bulk_yeager04','bulk_yeager09','bulk_GEOS','bulk_Charnok1','bulk_Charnok2'};
+labels = {'Large & Pond, 1981/82','Large & Yeager, 2004','Large & Yeager, 2009','GEOS BULKF','Charnok1','Charnok2'};
 vars   = {'hs','hl','taux','temp','qh','wind','sst'};
 Nx     = 221;         % Number of X-grid points
 Ny     = 234;         % Number of Y-grid points

@@ -17,6 +17,7 @@ set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
  TOOLDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/tools
  GEOSDIR=$WORKDIR/gmao_mitgcm_coupling/geos_bulkformulae/compare_bulkformulae
  cp $WORKDIR/MITgcm_68n/pkg/exf/EXF_OPTIONS.h .
+ cp $GEOSDIR/code/ZCSUB.F90 .
  $TOOLDIR/genmake2 -mods $GEOSDIR/code -of $TOOLDIR/darwin_arm64_gfortran
  make depend
  make -j
@@ -33,6 +34,14 @@ set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
  make clean
  make -j
  mv mitgcmuv mitgcmuv_GEOS
+ cp $GEOSDIR/code/ZCSUB.F90_Charnok1 ZCSUB.F90
+ make clean
+ make -j
+ mv mitgcmuv mitgcmuv_Charnok1
+ cp $GEOSDIR/code/ZCSUB.F90_Charnok2 ZCSUB.F90
+ make clean
+ make -j
+ mv mitgcmuv mitgcmuv_Charnok2
 
 # Run the experiment
  mkdir $WORKDIR/MITgcm_68n/run
@@ -46,5 +55,9 @@ set-up and run compare_bulkformulae with GEOS bulk formulae on Apple silicon
  mv bulk_fluxes.0000000001.data bulk_yeager04
  ./mitgcmuv_yeager09 > output_yeager09.txt
  mv bulk_fluxes.0000000001.data bulk_yeager09
- ./mitgcmuv_GEOS > output_bulk_GEOS.txt
+ ./mitgcmuv_GEOS > output_GEOS.txt
  mv bulk_fluxes.0000000001.data bulk_GEOS
+ ./mitgcmuv_Charnok1 > output_Charnok1.txt
+ mv bulk_fluxes.0000000001.data bulk_Charnok1
+ ./mitgcmuv_Charnok2 > output_Charnok2.txt
+ mv bulk_fluxes.0000000001.data bulk_Charnok2
